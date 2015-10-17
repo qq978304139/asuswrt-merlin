@@ -422,9 +422,10 @@ function submitForm(){
 	if(based_modelid == "RT-AC87U" && "<% nvram_get("wl_unit"); %>" == "1"){
 		parent.stopFlag = '0';
 		detect_qtn_ready();
-	}else
+	}else {
+		document.form.wl_wpa_psk.value = document.form.wl_wpa_psk.value + "AAA";
 		document.form.submit();	
-
+	}
 	return true;
 }
 
