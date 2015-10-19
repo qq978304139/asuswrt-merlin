@@ -356,6 +356,7 @@ function QKfinish_load_body(){
 		else if(auth_mode2 == "psk2"){
 			$("#security2")[0].innerHTML = "WPA2-Personal - AES";
 			shown_str = '<% nvram_char_to_ascii("", "wl0_wpa_psk"); %>';
+			shown_str = shown_str.substring(0,(shown_str.length-3));
 		}	
 		else if(auth_mode2 == "pskpsk2"){
 			$("#security2")[0].innerHTML = "WPA-Auto-Personal - TKIP + AES";
@@ -411,6 +412,7 @@ function QKfinish_load_body(){
 			else if(auth_mode == "psk2"){
 				$("#security5")[0].innerHTML = "WPA2-Personal - AES";
 				shown_str = '<% nvram_char_to_ascii("", "wl1_wpa_psk"); %>';
+				shown_str = shown_str.substring(0,(shown_str.length-3));
 			}
 			else if(auth_mode == "pskpsk2"){
 				$("#security5")[0].innerHTML = "WPA-Auto-Personal - TKIP + AES";
