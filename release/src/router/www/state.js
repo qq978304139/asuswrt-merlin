@@ -161,6 +161,27 @@ function isSupport(_ptn){
 	else if(_ptn == "localap"){
 		return (sw_mode == 4) ? false : true;
 	}
+	else if(_ptn == "aicloudipk"){
+		return false;
+	}
+	else if(_ptn == "cloudsync"){
+		return false;
+	}
+	else if(_ptn == "ipv6"){
+		return false;
+	}
+	else if(_ptn == "adBlock"){
+		return false;
+	}
+	else if(_ptn == "5G"){
+		return false;
+	}
+	else if(_ptn == "tmo"){
+		return false;
+	}
+	else if(_ptn == "mssid"){
+		return false;
+	}
 	else
 		return (rc_support.search(_ptn) == -1) ? false : true;
 }
@@ -241,7 +262,7 @@ var localAP_support = isSupport("localap");
 var ntfs_sparse_support = isSupport("sparse");
 var tr069_support = isSupport("tr069");
 var tor_support = isSupport("tor");
-var QISWIZARD = "QIS_wizard.htm";
+var QISWIZARD = "index.asp";
 // Todo: Support repeater mode
 if(isMobile() && sw_mode != 2 && !dsl_support)
 	QISWIZARD = "MobileQIS_Login.asp";
@@ -336,9 +357,9 @@ function change_wl_unit_status(_unit){
 	document.titleForm.wl_unit.disabled = false;
 	document.titleForm.wl_unit.value = _unit;
 	if(document.titleForm.current_page.value == "")
-		document.titleForm.current_page.value = "Advanced_Wireless_Content.asp";
+		document.titleForm.current_page.value = "index.asp";
 	if(document.titleForm.next_page.value == "")
-		document.titleForm.next_page.value = "Advanced_Wireless_Content.asp";
+		document.titleForm.next_page.value = "index.asp";
 	document.titleForm.action_mode.value = "change_wl_unit";
 	document.titleForm.action = "apply.cgi";
 	document.titleForm.target = "";
@@ -543,7 +564,7 @@ else{
 tabtitle[15] = new Array("", "Sysinfo", "Other Settings");
 
 var tablink = new Array();
-tablink[0] = new Array("", "Advanced_Wireless_Content.asp", "Advanced_WWPS_Content.asp", "Advanced_WMode_Content.asp", "Advanced_ACL_Content.asp", "Advanced_WSecurity_Content.asp", "Advanced_WAdvanced_Content.asp", "Advanced_Wireless_Survey.asp");
+tablink[0] = new Array("", "index.asp", "Advanced_WWPS_Content.asp", "Advanced_WMode_Content.asp", "Advanced_ACL_Content.asp", "Advanced_WSecurity_Content.asp", "Advanced_WAdvanced_Content.asp", "Advanced_Wireless_Survey.asp");
 tablink[1] = new Array("", "Advanced_WPasspoint_Content.asp");
 tablink[2] = new Array("", "Advanced_LAN_Content.asp", "Advanced_DHCP_Content.asp", "Advanced_GWStaticRoute_Content.asp", "Advanced_IPTV_Content.asp", "Advanced_SwitchCtrl_Content.asp");
 tablink[3] = new Array("", "Advanced_WAN_Content.asp", "Advanced_WANPort_Content.asp", "Advanced_PortTrigger_Content.asp", "Advanced_VirtualServer_Content.asp", "Advanced_Exposed_Content.asp", "Advanced_ASUSDDNS_Content.asp", "Advanced_NATPassThrough_Content.asp", "Advanced_Modem_Content.asp");
@@ -583,16 +604,16 @@ menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablin
 if(bwdpi_support){
 	if(based_modelid == "RT-AC3200"){
 		menuL1_title = new Array("", "<#menu1#>", "<#Guest_Network#>", "AiProtection", "<#Adaptive_QoS#>", "Traffic Analyzer" ,"<#Menu_usb_application#>", "AiCloud 2.0", "<#menu5#>");
-		menuL1_link = new Array("", "index.asp", "Guest_network.asp", "AiProtection_HomeSecurity.asp", "AdaptiveQoS_Bandwidth_Monitor.asp", "TrafficAnalyzer_Statistic.asp", "APP_Installation.asp", "cloud_main.asp", "Tools_Sysinfo.asp", "");
+		menuL1_link = new Array("", "index.asp", "index.asp", "index.asp", "AdaptiveQoS_Bandwidth_Monitor.asp", "TrafficAnalyzer_Statistic.asp", "APP_Installation.asp", "cloud_main.asp", "Tools_Sysinfo.asp", "");
 	}
 	else{
 		menuL1_title = new Array("", "<#menu1#>", "<#Guest_Network#>", "AiProtection", "Adaptive QoS",  "<#Menu_usb_application#>", "AiCloud 2.0", "Tools", "<#menu5#>");
-		menuL1_link = new Array("", "index.asp", "Guest_network.asp", "AiProtection_HomeSecurity.asp", "AdaptiveQoS_Bandwidth_Monitor.asp", "APP_Installation.asp", "cloud_main.asp", "Tools_Sysinfo.asp","");
+		menuL1_link = new Array("", "index.asp", "index.asp", "index.asp", "AdaptiveQoS_Bandwidth_Monitor.asp", "APP_Installation.asp", "cloud_main.asp", "Tools_Sysinfo.asp","");
 	}
 }
 else{
 	menuL1_title = new Array("", "<#menu1#>", "<#Guest_Network#>", "<#Menu_TrafficManager#>", "<#Parental_Control#>", "<#Menu_usb_application#>", "AiCloud 2.0", "Tools", "<#menu5#>");
-	menuL1_link = new Array("", "index.asp", "Guest_network.asp", "QoS_EZQoS.asp", "ParentalControl.asp", "APP_Installation.asp", "cloud_main.asp", "Tools_Sysinfo.asp", "");
+	menuL1_link = new Array("", "index.asp", "index.asp", "QoS_EZQoS.asp", "ParentalControl.asp", "APP_Installation.asp", "cloud_main.asp", "Tools_Sysinfo.asp", "");
 }
 
 var calculate_height = menuL1_link.length + menuL2_link.length - 1;
@@ -1251,7 +1272,7 @@ function show_menu(){
 	// Advanced
 	if(L2 != -1){ 	
 		for(var i = 1; i < menuL2_title.length; ++i){
-			if(menuL2_link[i] == "Advanced_Wireless_Content.asp" && "<% nvram_get("wl_subunit"); %>" != "0" && "<% nvram_get("wl_subunit"); %>" != "-1")
+			if(menuL2_link[i] == "index.asp" && "<% nvram_get("wl_subunit"); %>" != "0" && "<% nvram_get("wl_subunit"); %>" != "-1")
 				menuL2_link[i] = "javascript:change_wl_unit_status(" + <% nvram_get("wl_unit"); %> + ");";
 			if(menuL2_title[i] == "" || i == 5){
 				calculate_height--;
